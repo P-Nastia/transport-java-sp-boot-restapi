@@ -2,6 +2,7 @@ package org.example.controllers;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.example.data.dtos.account.LoginDTO;
 import org.example.data.dtos.account.RegisterUserDTO;
 import org.example.data.dtos.account.UserItemDTO;
 import org.example.services.AccountService;
@@ -22,5 +23,16 @@ public class AccountController {
     @PostMapping(value = "/register", consumes = MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<UserItemDTO> register(@ValidatedDTO @ModelAttribute RegisterUserDTO dto) {
         return ResponseEntity.ok(accountService.registerUser(dto));
+    }
+
+    @PostMapping("login")
+    public ResponseEntity<Object> login(@RequestBody LoginDTO dto){
+        try{
+            var auth = accountService.login(dto);
+            return ResponseEntity.ok(auth);
+        }
+        catch (Exception ex){
+            return ResponseEntity.badRequest().body("Неправильно введені дані! Спробуйте ще раз!");
+        }
     }
 }
