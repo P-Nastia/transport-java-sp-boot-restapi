@@ -1,0 +1,28 @@
+package org.example.entities.location;
+
+import jakarta.persistence.*;
+import lombok.Data;
+import org.example.entities.common.BaseEntity;
+
+@Entity
+@Data
+@Table(name = "cities")
+public class CityEntity extends BaseEntity<Long> {
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false, unique = true)
+    private String slug;
+
+    private String image;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "country_id", nullable = false)
+    private CountryEntity country;
+
+    @Column
+    private String description;
+
+    private String timezone;
+}
