@@ -14,7 +14,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.config.Customizer;
 
-
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -37,9 +36,10 @@ public class SecurityConfig {
                         .requestMatchers("/").permitAll()
                         .requestMatchers("/api/account/**").permitAll()
                         .requestMatchers("/api/countries/**").permitAll()
-                        .requestMatchers("/api/cities/**").permitAll()
+                        .requestMatchers("/api/file/**").permitAll()
                         .requestMatchers("/" + uploadDir + "/**").permitAll()
                         .requestMatchers("/static/**").permitAll()
+                        .requestMatchers("/api/cities/**").permitAll()
                         .requestMatchers("/swagger-resources/**").permitAll()
                         .requestMatchers("/v3/api-docs/**").permitAll()
                         .requestMatchers("/webjars/**").permitAll()

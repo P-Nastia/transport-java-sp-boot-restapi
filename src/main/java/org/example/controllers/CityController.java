@@ -2,6 +2,7 @@ package org.example.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.example.data.dtos.city.CityCreateDTO;
 import org.example.data.dtos.city.CityItemDTO;
@@ -23,9 +24,12 @@ public class CityController {
 
     @Operation(summary = "Створити нове місто")
     @PostMapping(consumes = MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<CityItemDTO> create(@ModelAttribute CityCreateDTO dto) {
-        return ResponseEntity.ok(cityService.create(dto));
+    public ResponseEntity<CityItemDTO> create(@ModelAttribute CityCreateDTO dto, HttpServletRequest request) {
+        CityItemDTO res = cityService.create(dto, request);
+
+        return ResponseEntity.ok(res);
     }
+
 
     @Operation(summary = "Отримати список всіх міст")
     @GetMapping

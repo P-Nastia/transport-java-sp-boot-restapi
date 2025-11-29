@@ -12,6 +12,7 @@ public class CityItemDTO {
     private String image;
     private String description;
     private String timezone;
-    private Long country_id;
+    private Long countryId;
+    private Long countryName;
     private String dateCreated;
 }
