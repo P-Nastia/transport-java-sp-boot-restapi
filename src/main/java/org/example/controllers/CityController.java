@@ -2,7 +2,6 @@ package org.example.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.example.data.dtos.city.CityCreateDTO;
 import org.example.data.dtos.city.CityItemDTO;
@@ -17,19 +16,17 @@ import static org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
 @RestController
 @RequestMapping("/api/cities")
 @RequiredArgsConstructor
-@Tag(name = "cities", description = "Міста")
+@Tag(name = "Cities", description = "Міста")
 public class CityController {
-
     private final CityService cityService;
 
     @Operation(summary = "Створити нове місто")
     @PostMapping(consumes = MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<CityItemDTO> create(@ModelAttribute CityCreateDTO dto, HttpServletRequest request) {
-        CityItemDTO res = cityService.create(dto, request);
+    public ResponseEntity<CityItemDTO> create(@ModelAttribute CityCreateDTO dto) {
+        CityItemDTO res = cityService.create(dto);
 
         return ResponseEntity.ok(res);
     }
-
 
     @Operation(summary = "Отримати список всіх міст")
     @GetMapping
@@ -37,9 +34,11 @@ public class CityController {
         return ResponseEntity.ok(cityService.getAll());
     }
 
-    @Operation(summary = "Отримати місто за slug")
+    @Operation(summary = "Отримати місто за слагом")
     @GetMapping("/{slug}")
-    public ResponseEntity<CityItemDTO> getBySlug(@PathVariable String slug) {
-        return ResponseEntity.ok(cityService.getBySlug(slug));
+    public CityItemDTO getCityBySlug(@PathVariable("slug") String slug) {
+        return cityService.getBySlug(slug);
     }
+
+
 }
