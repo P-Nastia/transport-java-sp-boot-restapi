@@ -18,6 +18,6 @@ public class CityCreateDTO {
     private String timezone;
     @NotNull(message = "Країна обов'язкова")
     private Long countryId;
-
+    private int population;
     private List<Long> descriptionImageIds;
 }

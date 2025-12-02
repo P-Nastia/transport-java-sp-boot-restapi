@@ -15,4 +15,5 @@ public class CityItemDTO {
     private Long countryId;
     private String countryName;
     private String dateCreated;
+    private int population;
 }
