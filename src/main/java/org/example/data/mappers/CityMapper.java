@@ -11,7 +11,7 @@ public interface CityMapper {
     @Mapping(source = "createdAt", target = "dateCreated", dateFormat = "yyyy-MM-dd HH:mm:ss")
     @Mapping(source = "country.id", target = "countryId")
     @Mapping(source = "country.name", target = "countryName")
-    CityItemDTO toDto(CityEntity country);
+    CityItemDTO toDto(CityEntity city);
 
     @Mapping(target = "image", ignore = true)
     @Mapping(target = "country", ignore = true)

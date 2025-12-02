@@ -21,7 +21,7 @@ public class CityEntity extends BaseEntity<Long> {
     @JoinColumn(name = "country_id", nullable = false)
     private CountryEntity country;
 
-    @Column
+    @Column(length = 10000)
     private String description;
 
     private String timezone;

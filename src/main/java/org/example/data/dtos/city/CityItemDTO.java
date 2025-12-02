@@ -13,6 +13,6 @@ public class CityItemDTO {
     private String description;
     private String timezone;
     private Long countryId;
-    private Long countryName;
+    private String countryName;
     private String dateCreated;
 }
