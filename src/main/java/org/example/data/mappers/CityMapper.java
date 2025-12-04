@@ -15,6 +15,5 @@ public interface CityMapper {
 
     @Mapping(target = "image", ignore = true)
     @Mapping(target = "country", ignore = true)
-    @Mapping(target = "description", ignore = true)
     CityEntity fromCreateDTO(CityCreateDTO dto);
 }
